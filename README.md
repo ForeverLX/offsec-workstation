@@ -12,7 +12,7 @@ The workstation focuses on minimalism, performance, and security, with tools tai
     To begin using this setup, clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/ForeverLX/arch-sway-offsec-workstation.git
+    git clone https://github.com/ForeverLX/offsec-workstation.git
     ```
 
 2. **Installation:**
@@ -20,7 +20,7 @@ The workstation focuses on minimalism, performance, and security, with tools tai
     After cloning, run the setup script to install the necessary components and tools for the offensive security workstation:
 
     ```bash
-    cd arch-sway-offsec-workstation
+    cd offsec-workstation
     ./setup.sh
     ```
 

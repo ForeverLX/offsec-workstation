@@ -1,0 +1,24 @@
+
+# Python virtual environments
+venv/
+.git_env/
+git_env/
+.venv/
+
+# Secrets / env files
+*.env
+.env.*
+
+# OS/editor noise
+*.swp
+*~
+.DS_Store
+
+# Node builds
+node_modules/
+dist/
+.next/
+
+# Python cache
+__pycache__/
+*.py[cod]
