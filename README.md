@@ -34,6 +34,13 @@ The workstation focuses on minimalism, performance, and security, with tools tai
 - **Automated Audits**: Regular audits for installed packages, services, and disk usage to ensure an optimized and secure environment.
 - **Custom Dotfiles**: Configurations for a streamlined, efficient development and security testing environment.
 
+## Offensive Security Tools Inventory
+
+This repository includes a documented offensive security tools inventory to clearly show the core tools I use (with invocation methods and purpose) in offensive security workflows and labs — useful for recruiters and technical reviewers.
+
+See [TOOLS_INVENTORY.md](./TOOLS_INVENTORY.md)
+
+
 ## Purpose of this Project
 
 The goal of this project is to create a reproducible, secure, and performant workstation for offensive security tasks. It is built to be:
