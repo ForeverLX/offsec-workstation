@@ -1,5 +1,10 @@
 # Arch Sway Offensive Security Workstation
 
+
+## System Snapshot History
+
+- Latest: `docs/system-snapshot.md` (rolling 3-month retention on GitHub)
+
 ## Overview
 This repository contains the configuration, tools, and resources for setting up a high-performance, secure, and productive offensive security workstation. Built on Arch Linux with the Sway window manager, it is designed to be the ultimate environment for penetration testing, vulnerability research, and offensive security practices. This repository serves as both a personal reference and a public showcase of the setup that fuels my journey as a self-taught penetration tester.
 
@@ -17,14 +22,14 @@ The workstation focuses on minimalism, performance, and security, with tools tai
 
 2. **Installation:**
 
-    After cloning, run the setup script to install the necessary components and tools for the offensive security workstation:
+    After cloning, review the scripts directory to install the necessary components and tools for the offensive security workstation:
 
     ```bash
     cd offsec-workstation
-    ./setup.sh
+    scripts/
     ```
 
-    **Note**: The setup script will configure the system based on your preferences (e.g., package installations, dotfile setups, etc.).
+    **Note**: Setup scripts are being finalized; use the scripts directory as reference for manual steps.
 
 ## Key Features
 
@@ -38,7 +43,7 @@ The workstation focuses on minimalism, performance, and security, with tools tai
 
 This repository includes a documented offensive security tools inventory to clearly show the core tools I use (with invocation methods and purpose) in offensive security workflows and labs — useful for recruiters and technical reviewers.
 
-See [TOOLS_INVENTORY.md](./TOOLS_INVENTORY.md)
+See `docs/tools-inventory.md`
 
 
 ## Purpose of this Project
@@ -50,21 +55,6 @@ The goal of this project is to create a reproducible, secure, and performant wor
 - **Documented**: Well-documented, including detailed explanations of configurations and methodologies, to facilitate understanding and onboarding for peers and potential employers.
 
 This repository will evolve as I continue learning and refining my skills in offensive security, with plans for additional sections such as labs, training, and research findings.
-
-## Labs
-
-The **Labs/** directory contains hands-on exercises focused on offensive security techniques. Each lab is designed to practice specific skills related to red teaming, vulnerability research, and penetration testing. The current structure includes the following labs:
-
-- **AD (Active Directory Red Teaming)**
-- **Linux (Linux Enumeration & Privilege Escalation)**
-- **Networking (Network Security)**
-- **Malware (Malware Analysis)**
-
-For each lab, the following structure is included:
-
-- **Tools Used**: The tools you will use for the lab exercises.
-- **Methodology**: A structured approach to performing the tasks in the lab.
-- **Objectives**: The learning outcomes and goals for completing the lab.
 
 ### Lab Methodology Example
 
@@ -89,3 +79,20 @@ This lab focuses on exploiting and defending Active Directory environments throu
 ## Tools Setup
 Instructions for setting up the tools used in this lab can be found in the **Tools/** directory.
 
+
+## Screenshots & Video
+
+Coming soon: workstation screenshots and a short walkthrough video.
+
+## Repo Layout
+- `docs/` — snapshots, audits, and tool inventory
+- `scripts/` — helper scripts and manual setup references
+- `assets/` — images and media
+- `artifacts/` — collected outputs and notes
+
+
+
+## Labs & Practice
+Lab writeups and challenge artifacts live in the security portfolio repository.
+
+- https://github.com/ForeverLX/security-portfolio

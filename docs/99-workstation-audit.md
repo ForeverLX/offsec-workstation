@@ -30,8 +30,8 @@ This audit captures the current state of the offensive security workstation, inc
 
 | Category | Tool | Installed | Notes |
 |----------|------|:---------:|-------|
-| Reporting/Collab | [Dradis CE](https://github.com/dradis/dradis-ce) | ❌ | Open‑source pentest reporting framework. :contentReference[oaicite:4]{index=4} |
-| Exploit Framework | Metasploit | ❌ | Modular exploitation platform. :contentReference[oaicite:5]{index=5} |
+| Reporting/Collab | [Dradis CE](https://github.com/dradis/dradis-ce) | ❌ | Open‑source pentest reporting framework. |
+| Exploit Framework | Metasploit | ❌ | Modular exploitation platform. |
 | Reconnaissance | Nmap | ✅ | Core network/service discovery |
 | Web Security | Burp Suite | Partial | Installed but workflow integration needed |
 | Vulnerability Scanner | Snyk CLI | ❌ | Installed but not configured |
@@ -75,12 +75,12 @@ Each checklist item should be committed with an informative message. Example:
 Add Dradis CE install section to audit + roadmap
 ```
 
-Good commit messages aid traceability and future onboarding. :contentReference[oaicite:6]{index=6}
+Good commit messages aid traceability and future onboarding.
 
 ---
 
 ## 📚 References
 
-- Dradis Community Edition overview and integration reference. :contentReference[oaicite:7]{index=7}  
-- Metasploit Framework installation overview. :contentReference[oaicite:8]{index=8}
+- Dradis Community Edition overview and integration reference.  
+- Metasploit Framework installation overview.
 
