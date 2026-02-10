@@ -1,5 +1,18 @@
 # System Snapshot History
 
+## 2026-02-10 — Performance + Network Audit
+
+**Boot / Performance**
+- Boot time: 21.331s total (firmware 9.967s, loader 2.061s, kernel 5.704s, userspace 3.598s)
+- Top boot contributors: man-db (6.942s), cryptsetup@home (2.245s), fstrim (2.144s), plocate-updatedb (1.285s)
+
+**Network**
+- Active interface: enp3s0 (ethernet)
+- Wi-Fi: wlan0 unavailable / disabled
+- DNS: systemd-resolved stub; global 9.9.9.9; link DNS 8.8.8.8 + ISP
+- Ping: 1.1.1.1 avg 11.46 ms, 8.8.8.8 avg 16.50 ms (0% loss)
+- Note: `iw` is not installed
+
 ## 2026-02-07 — Current Reality Snapshot
 
 **Host**

@@ -20,7 +20,7 @@ This audit captures the current state of the offensive security workstation, inc
 ## ⚠️ B) Weaknesses
 
 - **No centralized reporting tool** installed yet (e.g., Dradis CE).  
-- **Modular exploit framework (Metasploit)** not installed/configured.  
+- **Modular exploit framework (Metasploit)** not configured into workflow.  
 - **Hardening policies** (firewall/kernel/etc.) are not formalized.  
 - **Sandboxing workflows** are not yet in place.  
 - **Tool taxonomy** needs clear categories.  
@@ -31,14 +31,14 @@ This audit captures the current state of the offensive security workstation, inc
 | Category | Tool | Installed | Notes |
 |----------|------|:---------:|-------|
 | Reporting/Collab | [Dradis CE](https://github.com/dradis/dradis-ce) | ❌ | Open‑source pentest reporting framework. |
-| Exploit Framework | Metasploit | ❌ | Modular exploitation platform. |
-| Reconnaissance | Nmap | ✅ | Core network/service discovery |
-| Web Security | Burp Suite | Partial | Installed but workflow integration needed |
-| Vulnerability Scanner | Snyk CLI | ❌ | Installed but not configured |
+| Exploit Framework | Metasploit | ✅ | `msfconsole`, `msfvenom` present |
+| Reconnaissance | Nmap / Masscan | ✅ | Core network/service discovery |
+| Web Security | Gobuster | ✅ | Directory and content discovery |
+| Vulnerability Scanner | Snyk CLI | ❌ | Planned install + integration |
 | Protocol Abuse | Impacket/CME | ❌ | Planned next tools |
 | Post‑Exploit | Rubeus/GhostPack | ❌ | Planned after core tools |
 | Sandbox | Firejail/Containers | ❌ | Planned isolation tooling |
-| Hardening | Firewall/auditd | ❌ | Needs documentation & config |
+| Hardening | Firewall/auditd | ⚠️ | Services present; policy docs pending |
 
 ## 🚀 D) Actionable Checklist
 
@@ -63,7 +63,7 @@ This audit captures the current state of the offensive security workstation, inc
 
 ## 🧾 E) Snyk CLI Status
 
-- Installed: Yes (present in stack)  
+- Installed: ❌ (planned)  
 - Configured: ❌ (pending integration)  
 - Planned Integration: Weekly audit pipeline with JSON output ingestion
 
@@ -83,4 +83,3 @@ Good commit messages aid traceability and future onboarding.
 
 - Dradis Community Edition overview and integration reference.  
 - Metasploit Framework installation overview.
-

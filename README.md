@@ -5,6 +5,10 @@
 
 - Latest: `docs/system-snapshot.md` (rolling 3-month retention on GitHub)
 
+## Performance & Network Optimization
+
+See `docs/performance-optimization.md` for safe, incremental tuning steps and network stability notes.
+
 ## Overview
 This repository contains the configuration, tools, and resources for setting up a high-performance, secure, and productive offensive security workstation. Built on Arch Linux with the Sway window manager, it is designed to be the ultimate environment for penetration testing, vulnerability research, and offensive security practices. This repository serves as both a personal reference and a public showcase of the setup that fuels my journey as a self-taught penetration tester.
 
