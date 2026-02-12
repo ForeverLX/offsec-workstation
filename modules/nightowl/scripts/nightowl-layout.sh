@@ -14,18 +14,24 @@ if tmux has-session -t "$SESSION" 2>/dev/null; then
   exec tmux attach -t "$SESSION"
 fi
 
+# code window (2 panes)
 tmux new-session -d -s "$SESSION" -n code
 tmux send-keys -t "${SESSION}:code" "cd \"$CODE_DIR\"" C-m
+tmux split-window -h -t "${SESSION}:code"
+tmux send-keys -t "${SESSION}:code.0" "cd \"$CODE_DIR\"" C-m
+tmux send-keys -t "${SESSION}:code.1" "cd \"$CODE_DIR\"" C-m
 
+# runs window
 tmux new-window -t "$SESSION" -n runs
 tmux send-keys -t "${SESSION}:runs" "cd \"$RUNS_DIR\"" C-m
 
+# notes window
 tmux new-window -t "$SESSION" -n notes
 tmux send-keys -t "${SESSION}:notes" "cd \"$NOTES_DIR\"" C-m
 
+# exploitdev window
 tmux new-window -t "$SESSION" -n exploitdev
 tmux send-keys -t "${SESSION}:exploitdev" "cd \"$EXPLOIT_DIR\"" C-m
 
 tmux select-window -t "${SESSION}:code"
 exec tmux attach -t "$SESSION"
-
