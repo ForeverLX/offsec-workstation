@@ -1,8 +1,10 @@
--- offsec-workstation minimal nvim config
--- EXAMPLE - verify plugin bootstrap steps in official docs for lazy.nvim & Telescope.
+-- Minimal nvim config
 
 local fn = vim.fn
 local lazypath = fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   fn.system({
