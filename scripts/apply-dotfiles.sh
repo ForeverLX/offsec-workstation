@@ -25,6 +25,8 @@ echo "[*] Backups: $BACKUP_DIR"
 
 # tmux
 link_force "$ROOT/dotfiles/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+mkdir -p "$HOME/.config/tmux"
+install -m 0644 "dotfiles/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
 # nvim
 link_force "$ROOT/dotfiles/nvim/init.lua" "$HOME/.config/nvim/init.lua"
