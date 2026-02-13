@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ ${EUID:-0} -eq 0 ]]; then
+  echo "[!] Do not run this script with sudo/root. Run as your user."
+  exit 1
+fi
+
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BACKUP_DIR="${HOME}/.offsec-workstation-backups/$(date +%Y%m%d_%H%M%S)"
 
@@ -14,6 +19,13 @@ backup_if_exists() {
   fi
 }
 
+# zsh drop-in must exist
+if [[ ! -f "$ROOT/dotfiles/zsh/offsec.zsh" ]]; then
+  echo "[!] Missing: $ROOT/dotfiles/zsh/offsec.zsh"
+  echo "[!] Create it first (repo-owned zsh drop-in)."
+  exit 1
+fi
+
 link_force() {
   local src="$1" dst="$2"
   backup_if_exists "$dst"
@@ -25,8 +37,6 @@ echo "[*] Backups: $BACKUP_DIR"
 
 # tmux
 link_force "$ROOT/dotfiles/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
-mkdir -p "$HOME/.config/tmux"
-install -m 0644 "dotfiles/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
 
 # nvim
 link_force "$ROOT/dotfiles/nvim/init.lua" "$HOME/.config/nvim/init.lua"
