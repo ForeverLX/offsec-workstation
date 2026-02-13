@@ -1,0 +1,31 @@
+# Minimal CLI toolbox — keep this tight
+bash
+coreutils
+findutils
+grep
+sed
+gawk
+less
+git
+openssh-clients
+curl
+wget
+jq
+ca-certificates
+
+# Search/navigation
+ripgrep
+fd-find
+fzf
+bat
+zoxide
+
+# Editing + multiplexing
+neovim
+tmux
+
+# Quality-of-life
+file
+which
+procps
+

@@ -1,0 +1,19 @@
+# Minimal offsec-toolbox (rootless-friendly)
+#
+# NOTE: This is intentionally conservative. 
+
+FROM docker.io/archlinux:base
+
+RUN pacman -Syu --noconfirm --needed \
+    && pacman -S --noconfirm --needed $(cat /tmp/packages.txt) \
+    && pacman -Scc --noconfirm
+
+COPY packages.txt /tmp/packages.txt
+
+# Create a non-root user (rootless-ish inside container; podman will also be rootless outside)
+RUN useradd -m -u 1000 operator
+USER operator
+WORKDIR /home/operator
+
+CMD ["/bin/bash", "-l"]
+
