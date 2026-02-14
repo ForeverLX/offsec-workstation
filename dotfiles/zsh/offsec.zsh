@@ -5,6 +5,10 @@
 alias v="nvim"
 alias ls="eza"
 
+# Set nvim as text editor
+export EDITOR=nvim
+export VISUAL=nvim
+
 # Yazi: exit into the last directory you visited
 function y() {
   local tmp cwd

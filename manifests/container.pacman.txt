@@ -1,6 +1,17 @@
+# Podman rootless baseline (host)
 podman
+conmon
+crun
+
+# Rootless networking
 slirp4netns
-fuse-overlayfs
-aardvark-dns
 netavark
+aardvark-dns
+
+# Rootless storage
+fuse-overlayfs
+
+# Helpful utilities
+passt
+catatonit
 

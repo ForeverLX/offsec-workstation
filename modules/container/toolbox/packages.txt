@@ -7,7 +7,7 @@ sed
 gawk
 less
 git
-openssh-clients
+openssh
 curl
 wget
 jq
@@ -15,7 +15,7 @@ ca-certificates
 
 # Search/navigation
 ripgrep
-fd-find
+fd
 fzf
 bat
 zoxide
