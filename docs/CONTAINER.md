@@ -1,61 +1,137 @@
-# Container Profile Plan (custom Exegol-style)
+# Container Profile Architecture
 
-Goal: a portable operator environment that is **reproducible**, **local-first**, and **explicit**
-about host access—built for the workstation directory contract.
+## Overview
 
-## Non-goals
-- Not a full distro replacement
-- Not a kitchen-sink image
-- No implicit host access (no surprise mounts, no hidden “helpful” shortcuts)
+Rootless Podman container profiles for offensive security workflows. Each profile is:
+- **Reproducible**: Built from version-controlled manifests
+- **Minimal**: Only includes necessary tools for its purpose
+- **Modular**: Profiles are independent and composable
+- **Local-first**: No external registries required
 
-## Execution model
-Two modes:
+## Profile Structure
 
-1) **Solo operator (local)**
-- rootless Podman
-- runs locally
-- minimal image surface
-- no external services required
+```
+toolbox (base)
+├── ad-profile    → Active Directory engagement tooling
+├── re-profile    → Reverse engineering & vuln research
+└── web-profile   → Web recon & enumeration
+```
 
-2) **Team operator (portable)**
-- same image + wrapper script
-- consistent mounts + working directories
-- optional per-engagement stacks (Mythic/Dradis) are brought up only when needed
+### toolbox (Base Layer)
+- Minimal Arch Linux with core CLI utilities
+- Python 3.14 runtime for all profiles
+- Network utilities, git, tmux, neovim
+- Size: ~1.1 GB
 
-## Directory contract (host-mounted)
-Default mounts into the container:
+### ad-profile
+- **Purpose**: Enterprise AD engagements, Kerberos abuse, LDAP interrogation
+- **Key Tools**: Impacket, Kerberos (krb5), Samba, LDAP utils
+- **Size**: ~1.3 GB
+- **Use case**: Domain enumeration, credential attacks, lateral movement
 
-- `~/engage`
-- `~/loot`
-- `~/notes`
-- `~/exploitdev`
-- `~/projects`
+### re-profile  
+- **Purpose**: Binary analysis, vulnerability research, exploit development
+- **Key Tools**: radare2, GDB, pwntools, ROPgadget, capstone, unicorn
+- **Size**: ~1.8 GB
+- **Use case**: Reverse engineering, ROP chain building, binary exploitation
 
-Policy:
-- mounts are **explicit** and **narrow**
-- provide a **read-only** mode for `~/loot` for safer triage
-- never mount `$HOME` or `/` as a convenience
+### web-profile
+- **Purpose**: Web reconnaissance, service enumeration, HTTP tooling
+- **Key Tools**: nmap, masscan, gobuster, httpx, requests
+- **Size**: ~1.1 GB
+- **Use case**: External attack surface mapping, web app discovery
 
-## Wrapper script responsibilities
-The wrapper is the “safety gate”:
+## Directory Contract
 
-- verify required directories exist (idempotent, no destructive behavior)
-- run with explicit mounts only
-- default to rootless + no privileged mode
-- optionally enable:
-  - read-only loot triage
-  - host networking (only when explicitly requested)
+Containers automatically mount these host directories:
+- `~/engage` - Active engagement data
+- `~/loot` - Captured credentials, files
+- `~/notes` - Documentation, observations
+- `~/exploitdev` - Exploit code, payloads
+- `~/projects` - Long-term projects
 
-## Image principles
-- stable, minimal base
-- pinned versions (tag now; digest pinning later)
-- don’t install “everything”; install what the workflow needs
+All mounts use `:Z` (SELinux relabeling) for rootless security.
 
-## Per-engagement options (not always-on)
-These are **engagement tools**, not baseline workstation services:
+## Build System
 
-- Mythic (optional, per engagement)
-- Dradis (optional, per engagement)
+### Quick Start
+```bash
+# Build all profiles
+./modules/container/scripts/container.sh build-all
 
-Bring-up/tear-down should be scripted and predictable.
+# Build individual profile
+./modules/container/scripts/container.sh build ad
 
+# Run profile
+./modules/container/scripts/container.sh run ad
+```
+
+### Version Management
+Each build creates two tags:
+- `localhost/offsec-ad:0.1.0` - Stable version reference
+- `localhost/offsec-ad:20260214` - Date-stamped snapshot
+
+Update `VERSION` in `container.sh` to bump versions.
+
+### Air-Gapped Workflows
+```bash
+# Export for offline use
+./modules/container/scripts/container.sh export ad
+# Produces: offsec-ad-0.1.0-20260214.tar
+
+# Import on target
+./modules/container/scripts/container.sh import offsec-ad-0.1.0-20260214.tar
+```
+
+## Design Principles
+
+### No Kitchen Sink
+Each profile contains only tools relevant to its purpose. Avoid tool hoarding.
+
+### Explicit Mounts Only
+Never mount `$HOME` or `/`. Containers see only declared directories.
+
+### Rootless by Default
+All profiles run as non-root `operator` user with `--userns=keep-id`.
+
+### Official Packages Only
+Prefer official Arch repos over AUR. Document manual install for AUR tools.
+
+## Package Manifest Format
+
+Manifests in `manifests/*.txt`:
+- Comments start with `#` on their own line
+- No inline comments (breaks grep filtering)
+- One package per line
+- Blank lines ignored
+
+Example:
+```
+# Kerberos tooling
+krb5
+
+# LDAP utilities
+openldap
+```
+
+## Known Issues & Workarounds
+
+### libgcc Conflicts
+Arch base images have `gcc-libs` → `libgcc` transition issues. Fixed by:
+1. Full system upgrade in toolbox: `pacman -Syu --overwrite='*'`
+2. Use `--overwrite='*'` in derived containers
+
+### Python 3.14 Compatibility
+Some packages (e.g., `ropper`) have deprecated `ast.Str` usage. Use maintained alternatives:
+- ✅ ROPgadget (instead of ropper)
+- ✅ Modern Impacket builds
+
+### AUR Tools
+Tools like `ffuf` and `naabu` are AUR-only. Use official alternatives:
+- `ffuf` → `gobuster` (or manual install)
+- `naabu` → `masscan` + `nmap`
+
+## See Also
+- [CONTAINER-QUICKREF.md](CONTAINER-QUICKREF.md) - Command reference
+- [ROADMAP.md](ROADMAP.md) - Development phases
+- [DECISIONS.md](DECISIONS.md) - Architectural choices

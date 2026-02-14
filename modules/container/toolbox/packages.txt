@@ -1,4 +1,4 @@
-# Minimal CLI toolbox — keep this tight
+# Minimal “operator” CLI toolbox
 bash
 coreutils
 findutils
@@ -6,26 +6,32 @@ grep
 sed
 gawk
 less
-git
+which
+procps-ng
+psmisc
+util-linux
+iproute2
+inetutils
+bind
 openssh
-curl
-wget
-jq
-ca-certificates
+git
+tmux
+neovim
 
-# Search/navigation
+# Workflow
 ripgrep
 fd
 fzf
 bat
 zoxide
+yazi
+jq
 
-# Editing + multiplexing
-neovim
-tmux
+# Python runtime (required by all profiles)
+python
+python-pip
 
-# Quality-of-life
-file
-which
-procps
+# Arch CA / TLS basics
+ca-certificates
+ca-certificates-utils
 
