@@ -1,0 +1,24 @@
+# web-profile container
+# Purpose: web recon, discovery, enumeration
+# Base: offsec-toolbox (rootless zsh + minimal Arch)
+
+FROM localhost/offsec-toolbox:0.1.0
+
+# Copy manifest of packages
+COPY manifests/web-packages.txt /tmp/web-packages.txt
+
+# Install core packages
+RUN pacman -Sy --noconfirm --needed $(grep -vE '^\s*#|^\s*$' /tmp/web-packages.txt) && \
+    pacman -Scc --noconfirm && \
+    rm -f /tmp/web-packages.txt
+
+# Install Python web tooling
+RUN pip install --no-cache-dir httpx feroxbuster requests aiohttp
+
+# Default runtime user
+USER operator
+WORKDIR /work
+
+# Default shell
+CMD ["zsh", "-l"]
+

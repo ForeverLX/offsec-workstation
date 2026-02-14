@@ -1,0 +1,21 @@
+# ad-profile container
+# Purpose: enterprise AD engagement tooling
+# Base: offsec-toolbox (rootless zsh + minimal Arch)
+
+FROM localhost/offsec-toolbox:0.1.0
+
+# Copy AD tooling manifest for reproducible install
+COPY manifests/ad-packages.txt /tmp/ad-packages.txt
+
+# Install AD / Kerberos / LDAP / SMB tooling
+RUN pacman -Sy --noconfirm --needed $(grep -vE '^\s*#|^\s*$' /tmp/ad-packages.txt) && \
+    pacman -Scc --noconfirm && \
+    rm -f /tmp/ad-packages.txt
+
+# Ensure operator owns everything (already in base, but safe)
+USER operator
+WORKDIR /work
+
+# Default shell
+CMD ["zsh", "-l"]
+
