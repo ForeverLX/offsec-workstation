@@ -1,0 +1,13 @@
+# Kerberos tooling
+krb5
+heimdal
+
+# LDAP / AD interrogation
+ldap-utils
+samba
+samba-common
+samba-client
+
+# Impacket suite (Python)
+python-pip
+

@@ -1,0 +1,16 @@
+# Core RE CLI tools
+radare2
+binutils
+gdb
+strace
+ltrace
+hexedit
+
+# Python tooling
+python-pip
+python-setuptools
+
+# Python RE libraries (install during container build)
+# Optional: pin versions for reproducibility
+# Capstone and Unicorn installed via pip
+

@@ -1,0 +1,11 @@
+# Core CLI web tools
+nmap
+naabu
+curl
+wget
+jq
+
+# Optional: basic networking & debugging tools
+tcpdump
+netcat
+
